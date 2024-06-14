@@ -29,7 +29,7 @@ public class RpamypesRepositoryImpl implements RpamypesRepository {
 
 	public List<Planilla> GetPlanillas(String tipo) {
 		List<Planilla> planillas = namedParameterJdbcTemplate.query(
-				"select  PlanillaId, Ruta, Ruta2, FechaProcesada, EjecucionId, Documento, DuracionSegundos from Facturas.dbo.Planilla where Tipo = :tipo",
+				"select  PlanillaId, Ruta, Ruta2, FechaProcesada, EjecucionId, Documento, DuracionSegundos from dbo.Planilla where Tipo = :tipo",
 				new MapSqlParameterSource().addValue("tipo", tipo),
 				new BeanPropertyRowMapper<Planilla>(Planilla.class));
 		return planillas;
@@ -37,7 +37,7 @@ public class RpamypesRepositoryImpl implements RpamypesRepository {
 
 	public List<Planilla> GetPlanillas(String fechaIn, String fechaFn, String tipo) {
 		List<Planilla> planillas = namedParameterJdbcTemplate.query(
-				"select  PlanillaId, Ruta, Ruta2, FechaProcesada, EjecucionId, Documento, DuracionSegundos from Facturas.dbo.Planilla where FechaProcesada between :fechaIn and :fechaFn and Tipo = :tipo",
+				"select  PlanillaId, Ruta, Ruta2, FechaProcesada, EjecucionId, Documento, DuracionSegundos from dbo.Planilla where FechaProcesada between :fechaIn and :fechaFn and Tipo = :tipo",
 				new MapSqlParameterSource().addValue("fechaIn", fechaIn).addValue("fechaFn", fechaFn).addValue("tipo",
 						tipo),
 				new BeanPropertyRowMapper<Planilla>(Planilla.class));
